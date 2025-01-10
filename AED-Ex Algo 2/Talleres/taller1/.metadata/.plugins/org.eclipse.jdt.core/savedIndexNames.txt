@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\manue\OneDrive\1er Cuatri 2024\Algoritmos y Estructuras de Datos 1\Talleres\taller1\.metadata\.plugins\org.eclipse.jdt.core
