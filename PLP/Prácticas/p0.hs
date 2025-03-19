@@ -22,4 +22,24 @@ bisiesto :: Int -> Bool
 bisiesto n
     |n `mod` 100 == 0 && n `mod` 400 == 0 = True
     |n `mod` 4 == 0 && n `mod` 100 /= 0 = True
-    |True = False
+    |otherwise = False
+
+factorial :: Int -> Int
+factorial 0 = 0
+factorial 1 = 1
+factorial n = n*factorial(n-1)
+
+--Meto un entero ->Calculo lista de divisores -> Recorro la lista 
+esPrimo :: Int -> Int -> Bool
+esPrimo n 0 = True
+esPrimo n 1 = True
+esPrimo n d
+    |mod n d == 0 = False
+    |otherwise = esPrimo n (d-1)
+divisoresAux :: Int -> Int -> Int
+divisoresAux n 0 = 0
+divisoresAux n d
+    |mod n d == 0 && esPrimo d (d-1) = 1 + divisoresAux n (d-1)
+    |otherwise = divisoresAux n (d-1)
+cantDivisoresPrimos :: Int -> Int
+cantDivisoresPrimos n = divisoresAux n n
