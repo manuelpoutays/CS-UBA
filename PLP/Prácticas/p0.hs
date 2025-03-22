@@ -43,3 +43,16 @@ divisoresAux n d
     |otherwise = divisoresAux n (d-1)
 cantDivisoresPrimos :: Int -> Int
 cantDivisoresPrimos n = divisoresAux n n
+
+--Ej 3
+--Los parametros de entrada de Either son del estilo aEntero (Left 1) o aEntero(Right True)
+inverso :: Float -> Maybe Float
+inverso 0 = Nothing
+inverso n = Just (1/n)
+
+aEntero :: Either Int Bool -> Int
+aEntero (Left n) = n
+aEntero (Right b) = if b then 1 else 0
+
+--Ej 4
+limpiar :: String->String->String
