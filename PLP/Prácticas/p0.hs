@@ -56,3 +56,46 @@ aEntero (Right b) = if b then 1 else 0
 
 --Ej 4
 limpiar :: String->String->String
+limpiar _ "" = ""
+limpiar n (x:xs)
+    |pertenece n x= limpiar n xs
+    |otherwise = x : limpiar n xs
+pertenece :: String -> Char -> Bool
+pertenece "" x = False
+pertenece (n:ns) x 
+    |n==x = True
+    |otherwise = pertenece ns x
+
+difPromedio :: [Float] -> [Float]
+difPromedio xs = map (\x -> x - promedio) xs
+  where
+    promedio = sum xs / fromIntegral (length xs)
+
+todosIguales :: [Int] -> Bool
+todosIguales [] = True
+todosIguales [_] = True
+todosIguales (x:y:ys) = if x/=y then False else todosIguales (y:ys)
+
+--Ej5
+data AB a=Nil|Bin (AB a) a (AB a) deriving (Show)
+--Ejemplo de chatGPT sobre funciones con árboles
+altura :: AB a -> Int
+altura Nil = 0
+altura (Bin izq _ der) = 1 + max (altura izq) (altura der)
+arbolEjemplo :: AB Int
+arbolEjemplo = Bin (Bin (Bin Nil 1 Nil) 3 (Bin Nil 4 Nil)) 5 (Bin Nil 8 Nil)
+arbolEjemplo2 :: AB Bool
+arbolEjemplo2 = Bin (Bin (Bin Nil False Nil) True (Bin Nil False Nil)) True (Bin Nil True Nil)
+
+vacioAB :: AB a -> Bool
+vacioAB Nil = True
+vacioAB n = False
+
+negacionAB :: AB Bool -> AB Bool
+negacionAB Nil = Nil
+negacionAB (Bin izq True der) = Bin (negacionAB (izq)) (False) (negacionAB (der))
+negacionAB (Bin izq False der) = Bin (negacionAB (izq)) (True) (negacionAB (der))
+
+productoAB :: AB Int->Int
+productoAB Nil = 1
+productoAB (Bin izq n der) = n * productoAB(izq) * productoAB (der)
