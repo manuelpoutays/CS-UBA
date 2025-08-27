@@ -52,7 +52,7 @@ inverso n = Just (1/n)
 
 aEntero :: Either Int Bool -> Int
 aEntero (Left n) = n
-aEntero (Right b) = if b then 1 else 0
+aEntero (Right b) = if b then 1 else 0 --parecido a lo que veo en scala.
 
 --Ej 4
 limpiar :: String->String->String
